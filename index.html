@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Table Output & Processing</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 50%;
+      margin: 20px;
+    }
+    table, th, td {
+      border: 1px solid black;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Table 1</h2>
+  <table id="table1">
+    <!-- Table 1 data will be inserted here using JavaScript -->
+  </table>
+
+  <h2>Table 2</h2>
+  <table id="table2">
+    <tr>
+      <th>Category</th>
+      <th>Value</th>
+    </tr>
+    <!-- Table 2 data will be inserted here using JavaScript -->
+  </table>
+
+  <script>
+    // Your JavaScript code to process the data and populate tables goes here
+
+    // Function to calculate values for Table 2
+    function calculateValues() {
+      const table1Data = [
+        ["A1", 41],
+        ["A2", 18],
+        ["A3", 21],
+        ["A4", 63],
+        ["A5", 2],
+        ["A6", 53],
+        ["A7", 5],
+        ["A8", 57],
+        ["A9", 60],
+        ["A10", 93],
+        ["A11", 28],
+        ["A12", 3],
+        ["A13", 90],
+        ["A14", 39],
+        ["A15", 80],
+        ["A16", 88],
+        ["A17", 49],
+        ["A18", 60],
+        ["A19", 26],
+        ["A20", 28]
+      ];
+
+      const table2Data = document.getElementById("table2");
+
+      // Calculate values based on the provided formula
+      const alphaValue = table1Data[4][1] + table1Data[19][1];
+      const betaValue = table1Data[14][1] / table1Data[6][1];
+      const charlieValue = table1Data[12][1] * table1Data[11][1];
+
+      // Add rows to Table 2
+      addRow(table2Data, "Alpha", alphaValue);
+      addRow(table2Data, "Beta", betaValue);
+      addRow(table2Data, "Charlie", charlieValue);
+    }
+
+    // Function to add a row to a table
+    function addRow(table, category, value) {
+      const row = table.insertRow(-1);
+      const cell1 = row.insertCell(0);
+      const cell2 = row.insertCell(1);
+      cell1.innerHTML = category;
+      cell2.innerHTML = value;
+    }
+
+    // Function to populate Table 1
+    function populateTable1() {
+      const table1Data = [
+        ["A1", 41],
+        ["A2", 18],
+        ["A3", 21],
+        ["A4", 63],
+        ["A5", 2],
+        ["A6", 53],
+        ["A7", 5],
+        ["A8", 57],
+        ["A9", 60],
+        ["A10", 93],
+        ["A11", 28],
+        ["A12", 3],
+        ["A13", 90],
+        ["A14", 39],
+        ["A15", 80],
+        ["A16", 88],
+        ["A17", 49],
+        ["A18", 60],
+        ["A19", 26],
+        ["A20", 28]
+      ];
+
+      const table1 = document.getElementById("table1");
+
+      // Add header row
+      const header = table1.createTHead();
+      const headerRow = header.insertRow(0);
+      headerRow.insertCell(0).innerHTML = "Index #";
+      headerRow.insertCell(1).innerHTML = "Value";
+
+      // Add data rows
+      table1Data.forEach(rowData => {
+        const row = table1.insertRow(-1);
+        rowData.forEach(cellData => {
+          const cell = row.insertCell(-1);
+          cell.innerHTML = cellData;
+        });
+      });
+    }
+
+    // Call functions to populate and calculate values
+    populateTable1();
+    calculateValues();
+  </script>
+</body>
+</html>
